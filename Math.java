@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 class Math {
@@ -12,24 +13,20 @@ class Math {
     }
     public void resoult(Number number) throws UnknownOperatorException {
         System.out.println("Wprowadz znak dzialania (+,-,*,/)");
-        try {
-            String input = sc.nextLine();
-            if (input == "+" || input == "-" || input == "/" || input == "*") {
-                switch (input) {
-                    case "+" -> System.out.println(addNumbers(number));
-                    case "-" -> System.out.println(subNumbers(number));
-                    case "*" -> System.out.println(multiNumbers(number));
-                    case "/" -> System.out.println(dividNumbers(number));
-                }
-            }
+        String input = sc.nextLine();
+        if (!Objects.equals(input, "+") && !Objects.equals(input, "-") && !Objects.equals(input, "/") && !Objects.equals(input, "*")) {
             throw new UnknownOperatorException("Zly operator arytmetyczny");
-        }catch (UnknownOperatorException er){
-            System.err.println("Zly operator arytmetyczny");
+        }
+        switch (input) {
+            case "+" -> System.out.println(addNumbers(number));
+            case "-" -> System.out.println(subNumbers(number));
+            case "*" -> System.out.println(multiNumbers(number));
+            case "/" -> System.out.println(dividNumbers(number));
         }
     }
     public double dividNumbers(Number number) {
             try{
-                return (int) number.getA() / (int) number.getB();
+                int a = (int) number.getA() / (int) number.getB();
             }catch (ArithmeticException er){
                 System.err.println("Nie mozna dzielic przez zero");
 
